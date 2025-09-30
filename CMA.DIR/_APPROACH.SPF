@@ -1,0 +1,44 @@
+PROC _APPROACH(String[32] Alat, Int DBroj, Real Ugao, Int Kordsis, Int NacZaokreta, Real XZaokret, Real Zaokret, Int PrilazX, Real PrecPrilaz, Int PrilazZ, Real PozPrilaz)
+
+Def Int BrToc
+BrToc=Gett(alat)
+
+T0D0
+
+STOPRE
+If (NacZaokreta==0)
+   G53G0X=XZaokret
+Endif
+If (NacZaokreta==1)
+   G53G0Z=Zaokret
+Endif
+If (NacZaokreta==2)
+   G53G0X=XZaokret
+   G53G0Z=Zaokret
+Endif
+If (NacZaokreta==3)
+   G53G0Z=Zaokret
+   G53G0X=XZaokret
+Endif
+
+G0G53B=Ugao A=0
+
+If (PrilazZ<>0)
+   G53G0Z=PozPrilaz
+Endif
+
+If (PrilazX==0)
+   G53G0X0
+Endif
+If (PrilazX==2)
+   G53G0X=PrecPrilaz
+Endif
+T=alat D=Dbroj G[8]=Kordsis
+If (PrilazX==1)
+   G0X=$TC_DP3[brtoc,dbroj]
+Endif
+If (PrilazX==3)
+   G0X=PrecPrilaz
+Endif
+
+M17

@@ -1,0 +1,27 @@
+PROC _GRINDING_2(STRING[32] BRTOC ,INT DBROJTOC ,INT NACBRUSVAR ,INT SMER ,REAL PREC0VAR ,REAL PREC1VAR ,REAL POZZ1 ,REAL POZZ2 ,INT BROJMER ,INT BROJMERZ ,REAL VAR15 ,REAL VAR16 ,INT KORDSYSVAR ,INT OBLIK ,INT BRZINA ,INT HLADJENJEVAR , int ODSKOK ,real PRECODSKOK ,STRING[100] KOMENT )
+
+nazivtoc[0]=brtoc
+brojivicetoc[0]=dbrojtoc
+BRUS[0]=nacbrusvar
+brussmer[0]=smer
+prec[0,0]=prec0var
+prec[0,1]=prec1var
+pozz[0,0]=pozz1
+pozz[0,1]=pozz2
+if (brojmer==0)
+   radius[0]=brojmerz
+else
+   radius[0]=-brojmerz
+endif
+korx[0]=var15
+korz[0]=var16
+kordsys[0]=kordsysvar
+oblikam[0]=oblik
+brzkam[0]=brzina
+hladjenje[0]=hladjenjevar
+komentar[0]=koment
+
+sh000
+M17
+
+

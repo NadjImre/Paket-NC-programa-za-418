@@ -1,0 +1,21 @@
+PROC _DRESSING_DATA( STRING[32] BRTOC,INT DBROJTOC,INT DBROJTOC2,STRING[32] BrAbriht,Int DbrojAbriht,Int DbrojAbriht2,Int Tip2,Int HLAD_A,Int OBLIK,String[100] KOMENT)
+
+DEF INT BROJAC 
+
+FOR BROJAC=1 to 3
+    Nazivtoc_A[2*BROJAC]=brtoc
+    BrojIviceToc_A[2*BROJAC]=dbrojtoc
+    BrojIviceToc_A[2*BROJAC+1]=dbrojtoc2
+    NazivAbriht[2*BROJAC]=brabriht
+    BrojIviceAbriht[2*Brojac]=DBrojAbriht
+    BrojIviceAbriht[2*Brojac+1]=DBrojAbriht2
+
+    padajuci[2*Brojac]=tip2
+    hladjenje_a[2*Brojac]=hlad_a
+    oblikam_a[2*Brojac]=oblik
+    komentar_a[2*Brojac]=koment
+    STOPRE
+ENDFOR
+
+M17
+

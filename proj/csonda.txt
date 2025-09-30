@@ -1,0 +1,473 @@
+
+
+//M(Sonda/$89473/"m01.png"///10,10)
+
+DEF NACMERENJA = (I/* 0=$89475,1=$89078,4=$89543,3=$89544,8=$89551//,$89481,,////200/390//"merenje.html","m02");,2=$89477,8=$89551
+
+;DEF MERSIR = (R3/-1000,1000//,$89493,"",$89068/LI3,///200/390)
+DEF nasNom = (R3/-9,9//,$89636,," "/wr1///345,,100),
+nasMer = (R3/0,9//,$89547,,/wr1///445,,125)
+DEF NOMPREC = (R3/-1000,1000//,$89201,,$89068/LI3,WR2///200,,160/345,,110//"merenje.html","m03"),
+VAR7 = (R3///,,,$89068////200,,160/430,,110//"merenje.html","m07")
+DEF NOMPOZ = (R3/-1000,1000//,$89638,,$89068/LI3,///200,,160/345,,110//"merenje.html","m04"),
+VAR8 = (R3///,,,$89068/////430,,110//"merenje.html","m08")
+DEF NOMC = (R3/-1000,1000//,$89551,"",/LI3,WR1///200,,160/345,,110),
+VAR9 = (R3///,,,$89072/////430,,110//"merenje.html","m09")
+;DEF NOMSIR = (R3/-1000,1000//,$89492,"",$89068/LI3,///200/390)
+
+DEF nasX = (R3/-9,9//,$89547,," "/wr1///345,,100),
+nasy = (R3/0,9//,$89548,,/wr1///450,,125)
+DEF ERRX = (R3/-9,9//,$89494,," "/LI3,///200,,130/335,,120//"merenje.html","m05"),
+ERRMX = (R3/0,9//,,,$89068/LI3,////425,,120//"merenje.html","m05")
+DEF ERRZ = (R3/-9,9//,$89495,," "/LI3,///200,,130/335,,120//"merenje.html","m06"),
+ERRMZ = (R3/0,9//,,,$89068/LI3////425,,120//"merenje.html","m06")
+;DEF ERRW = (R3/-9,9//,$89496,," "/LI3,///200/315),
+;ERRMW = (R3/0,9//,,,$89068/LI3,////425)
+DEF ERRC = (R3/-360,360//,"Uglovna greska",," "/LI3,///200,,130/335,,120),
+ERRMC = (R3/0,360//,,,$89072/LI3////425,,120)
+
+DEF nas1 = (R3/-9,9//,$89549,," "/wr1///335,,130/335,,120),
+nas2 = (R3/0,9//,$89550,,/wr4///425,,120)
+
+DEF VAR1 = (R3///,$89482,,$89068////200,,130/335,,120),
+VAR11 = (R3///,,,$89068/wr4////425,,120)
+DEF VAR2 = (R3///,$89483,,$89068////200,,130/335,,120),
+VAR12 = (R3///,,,$89068/wr4////425,,120)
+
+DEF VAR3 = (R1/10,600//,$89484,,$89070////200,,130/335,,120//"merenje.html","m12"),
+VAR13 =(R3/10,600//,,,$89070/wr4////425,,120)
+DEF BRZC1 = (R1/10,600//,$89484,,$89070////200,,130/335,,120//"merenje.html","m12"),
+BRZC2 =(R3/10,600//,,,$89070/wr4////425,,120)
+DEF VAR4 = (R1/-90,180//,$89485,,$89072////200,,130/335,,120//"merenje.html","m13"),
+VAR14 = (R3/-90,90//,,,$89072/wr4////425,,120)
+DEF VAR5 = (R2/1,60//,$89486,,$89068////200,,130/335,,120//"merenje.html","m14"),
+VAR15 = (R3/1,16//,,,$89068/wr4////425,,120)
+
+DEF MerKorak1 = (R1///,$89637,,$89072/WR2///200,,130/335,,120//"merenje.html","m17"),
+MerKorak2 = (R1///,,," "/WR4////425)
+DEF MerBroj1 = (IDD///,$89639,,"-"/WR2///200,,130/335,,120//"merenje.html","m16"),
+MerBroj2 = (IDD///,,," "/WR4////425)
+DEF VAR6 = (IDD/* 0=$89487, 1=$89488//,$89489,,$89072/WR4///200,,130/335,,120//"merenje.html","m15"),
+VAR16 = (IDD/* 0=$89487, 1=$89488//,,," "/WR4////425)
+;DEF MEROR = (R4/0,359.999//,$89551,"",$89072/LI3,///200/390)
+;DEF MERUGO = (R4/-180,180//,$89552,"",$89072/LI3,///200/390)
+;DEF STOPKAM = (IDD/* 0="OFF", 1="ON"//,$89553,," "////200/390)
+DEF DEBUG2 = (IDD/1,80//,$89474,," "/WR4//""/200,,100/390)
+DEF DEBUG1 = (IDD/0,19//,$89474/WR4//"BRUSBROJ"/200,,100/390)
+DEF DEBUG3 = (IDD/0,19//,$89474/WR4///200,,100/390)
+DEF DEBUG4 = (IDD/0,19//,$89474/WR4///200,,100/390)
+DEF DEBUG5 = (IDD/0,19//,$89474/WR4///200,,100/390)
+
+DEF VAR17 = (R4///,,,$89068/WR4////425)
+DEF VAR18 = (R4///,,,$89068/WR4////425)
+DEF VAR19 = (R3///,,,$89072/WR4////425)
+DEF XMAS = (R4///,$89099,,$89068/WR4//"$AA_IM[0]"/200/315),
+ZMAS = (R4///,,,$89068/WR4//"$AA_IM[2]"//425)
+DEF CMAS = (R4///,$89099,,$89068/WR4//"$AA_IM[1]"/200/315),
+BMAS = (R4///,,,$89068/WR4//"$AA_IM[5]"//425)
+DEF XOFF = (R4///,$89448,,$89068/WR4//"$P_UIFR[4,0,TR]"/200/315),
+ZOFF = (R4///,,,$89068/WR4//"$P_UIFR[4,2,TR]"//425)
+DEF COFF = (R4///,$89448,,$89068/WR4//"$P_UIFR[4,1,TR]"/200/315),
+BOFF = (R4///,,,$89068/WR4//"$P_UIFR[4,5,TR]"//425)
+def brojbrus=(i////wr4//"brusbroj")
+def osca = (I////wr4)
+DEF VAR0 = (IDD////wr4//"NACABRIHT[0]")
+
+VS1=($89499,,se1)
+VS2=($89500,,se1)
+VS3=("",,se2)
+VS4=($89501,,se1)
+VS5=($89502,,se1)
+VS6=($89640,,se1)
+VS7=("",,se2)
+VS8=("",,se2)
+
+PRESS(VS2)
+  DEBUG2=DEBUG2-1
+  IF (DEBUG2<1)
+     DEBUG2=80
+  ENDIF
+DEBUG1 = DEBUG2-1
+END_PRESS
+
+
+PRESS(VS1)
+  DEBUG2=DEBUG2+1
+  IF (DEBUG2>80)
+     DEBUG2=1
+  ENDIF
+DEBUG1 = DEBUG2-1
+END_PRESS
+
+
+PRESS(VS4)
+  IF (DEBUG5==0)
+     VAR1 = 2*(XMAS-XOFF)
+  ELSE
+;     MEROR=CMAS-COFF 
+  ENDIF
+END_PRESS
+
+PRESS(VS6)
+;  IF (DEBUG5==0)
+;     VAR11 = 2*(XMAS-XOFF)
+;  ELSE
+     NOMPREC=VAR7
+     NOMPOZ=VAR8
+;     NOMC=VAR9
+;     NOMSIR=MERSIR
+;     KALPREC=VAR17
+;     KALPOZ=VAR18
+;  ENDIF
+END_PRESS
+
+PRESS(VS5)
+  if (DEBUG5==0)
+    VAR2 = ZMAS-ZOFF
+   Else
+;     MERUGO = BMAS-BOFF
+   Endif
+END_PRESS
+
+PRESS(VS7)
+  IF (DEBUG5==0)
+    VAR12 = ZMAS-ZOFF
+  ENDIF
+END_PRESS
+
+
+PRESS(VS8)
+  IF (DEBUG5<>0)
+     DEBUG5=0
+     VS4.st=$89501
+     VS5.st=$89502
+     VS6.st=$89503
+     VS7.st=$89504
+     VS8.st=">>>"
+  ELSE
+     DEBUG5=1
+     VS4.st="Zapamti%nOrjentaciju C"
+     VS5.st="Zapamti%nugao B"
+     VS6.st=$89640
+     VS7.st=""
+     VS8.st="<<<"
+  ENDIF
+END_PRESS  
+
+CHANGE(DEBUG2)
+
+DEBUG1=DEBUG2-1
+debug3=debug1*2
+debug4=debug1*2+1
+hd=$89473<<" - "<<DEBUG2
+VAR1.VAR = "MER_PREC["<<DEBUG3<<"]"
+VAR2.VAR = "MER_POZ["<<DEBUG3<<"]"
+VAR3.VAR = "MER_BRZ["<<DEBUG3<<"]"
+VAR4.VAR = "MER_UGAO["<<DEBUG3<<"]"
+VAR5.VAR = "MER_DUZ["<<DEBUG3<<"]"
+VAR6.VAR = "MER_SONDA["<<DEBUG3<<"]"
+
+VAR7.VAR = "MER_X["<<DEBUG3<<"]"
+VAR8.VAR = "MER_Z["<<DEBUG3<<"]"
+VAR9.VAR = "MER_C["<<DEBUG3<<"]"
+
+VAR11.VAR = "MER_PREC["<<DEBUG4<<"]"
+VAR12.VAR = "MER_POZ["<<DEBUG4<<"]"
+VAR13.VAR = "MER_BRZ["<<DEBUG4<<"]"
+VAR14.VAR = "MER_UGAO["<<DEBUG4<<"]"
+VAR15.VAR = "MER_DUZ["<<DEBUG4<<"]"
+VAR16.VAR = "MER_SONDA["<<DEBUG4<<"]"
+
+VAR17.VAR = "MER_X["<<DEBUG4<<"]"
+VAR18.VAR = "MER_Z["<<DEBUG4<<"]"
+
+NACMERENJA.VAR = "MER_NACIN["<<DEBUG1<<"]"
+
+ERRX.VAR = "MER_GRES_X["<<DEBUG1<<"]"
+ERRZ.VAR = "MER_GRES_Z["<<DEBUG1<<"]"
+ERRc.VAR = "MER_GRES_c["<<DEBUG1<<"]"
+
+NOMprec.VAR = "nom_X["<<DEBUG1<<"]"
+NOMpoz.VAR = "nom_z["<<DEBUG1<<"]"
+
+ERRMX.VAR = "MER_DOZ_GRES_X["<<DEBUG1<<"]"
+ERRMZ.VAR = "MER_DOZ_GRES_Z["<<DEBUG1<<"]"
+ERRMc.VAR = "MER_DOZ_GRES_c["<<DEBUG1<<"]"
+
+osca.VAR = "osca["<<BROJBRUS<<"]"
+VAR0.VAR = "NACABRIHT["<<BROJBRUS<<"]"
+
+BRZC1.VAR = "MER_BRZ_C["<<DEBUG3<<"]"
+MERkORAK1.VAR = "MER_KORAK["<<DEBUG3<<"]"
+MERBROJ1.VAR = "MER_BROJAC["<<DEBUG3<<"]"
+
+BRZC2.VAR = "MER_BRZ_C["<<DEBUG4<<"]"
+MERkORAK2.VAR = "MER_KORAK["<<DEBUG4<<"]"
+MERBROJ2.VAR = "MER_BROJAC["<<DEBUG4<<"]"
+
+END_CHANGE
+
+CHANGE(nacmerenja)
+
+if (nacmerenja==0)
+hlp="m00.png"
+VAR1.WR = 1
+VAR2.WR = 1
+VAR3.WR = 1
+VAR4.WR = 1
+VAR5.WR = 1
+VAR6.WR = 4
+VAR7.WR = 1
+VAR8.WR = 1
+
+NACMERENJA.WR = 2
+ERRX.WR = 1
+ERRZ.WR = 1
+errc.wr=4
+
+
+NOMprec.WR = 1
+NOMpoz.WR = 1
+;DOZVOLJENE GRESKE
+ERRMX.WR = 1
+ERRMZ.WR = 1
+errmc=4
+brzc1.wr=4
+merkorak1.wr=4
+merbroj1.wr=4
+
+endif
+
+if (nacmerenja==1)
+hlp="m01.png"
+VAR1.WR = 2
+VAR2.WR = 2
+VAR3.WR = 2
+VAR4.WR = 2
+VAR5.WR = 2
+VAR6.WR = 4
+
+VAR7.WR = 1
+VAR8.WR = 1
+VAR9.WR = 1
+
+NACMERENJA.WR = 2
+ERRX.WR = 1
+ERRZ.WR = 2
+errc.wr=4
+
+NOMprec.WR = 1
+NOMpoz.WR = 2
+;DOZVOLJENE GRESKE
+ERRMX.WR = 1
+ERRMZ.WR = 2
+errmc.wr=4
+brzc1.wr=4
+merkorak1.wr=4
+merbroj1.wr=4
+
+
+endif
+
+if (nacmerenja==2)
+hlp="m02.png"
+VAR1.WR = 2
+VAR2.WR = 2
+VAR3.WR = 2
+VAR4.WR = 2
+VAR5.WR = 2
+VAR6.WR = 4
+
+VAR7.WR = 1
+VAR8.WR = 1
+VAR9.WR = 1
+
+NACMERENJA.WR = 2
+ERRX.WR = 2
+ERRZ.WR = 1
+
+NOMprec.WR = 2
+NOMpoz.WR = 1
+;DOZVOLJENE GRESKE
+ERRMX.WR = 2
+ERRMZ.WR = 1
+
+endif
+
+if (nacmerenja==3)
+hlp="m03.png"
+VAR1.WR = 2
+VAR2.WR = 2
+VAR3.WR = 2
+VAR4.WR = 2
+VAR5.WR = 2
+VAR6.WR = 4
+
+VAR7.WR = 1
+VAR8.WR = 1
+VAR9.WR = 1
+
+NACMERENJA.WR = 2
+ERRX.WR = 1
+ERRZ.WR = 1
+errc.wr=4
+
+NOMprec.WR = 1
+NOMpoz.WR = 2
+;DOZVOLJENE GRESKE
+ERRMX.WR = 1
+ERRMZ.WR = 1
+errmc.wr=4
+
+brzc1.wr=4
+merkorak1.wr=4
+merbroj1.wr=4
+
+endif
+
+if (nacmerenja==4)
+hlp="m04.png"
+VAR1.WR = 2
+VAR2.WR = 2
+VAR3.WR = 2
+VAR4.WR = 2
+VAR5.WR = 2
+VAR6.WR = 4
+
+VAR7.WR = 1
+VAR8.WR = 1
+VAR9.WR = 1
+
+NACMERENJA.WR = 2
+ERRX.WR = 1
+ERRZ.WR = 1
+errc.wr=4
+
+NOMprec.WR = 2
+NOMpoz.WR = 1
+;DOZVOLJENE GRESKE
+ERRMX.WR = 1
+ERRMZ.WR = 1
+errmc.wr=4
+brzc1.wr=4
+merkorak1.wr=4
+merbroj1.wr=4
+
+endif
+
+if (nacmerenja==8)
+hlp="m08.png"
+VAR1.WR = 2
+VAR2.WR = 2
+VAR3.WR = 2
+VAR4.WR = 1
+VAR5.WR = 2
+VAR6.WR = 4
+
+VAR7.WR = 1
+VAR8.WR = 1
+VAR9.WR = 1
+
+NACMERENJA.WR = 2
+ERRX.WR = 1
+ERRZ.WR = 1
+ERRC.WR = 4
+
+NOMprec.WR = 1
+NOMpoz.WR = 1
+;DOZVOLJENE GRESKE
+ERRMX.WR = 1
+ERRMZ.WR = 1
+ERRMC.WR=4
+brzc1.wr=4
+merkorak1.wr=4
+merbroj1.wr=4
+
+endif
+
+if (nacmerenja==9)
+hlp="m09.png"
+VAR1.WR = 2
+VAR2.WR = 2
+VAR3.WR = 2
+VAR4.WR = 1
+VAR5.WR = 2
+VAR6.WR = 4
+
+VAR7.WR = 1
+VAR8.WR = 1
+VAR9.WR = 1
+
+NACMERENJA.WR = 2
+ERRX.WR = 1
+ERRZ.WR = 2
+
+NOMprec.WR = 1
+NOMpoz.WR = 2
+;DOZVOLJENE GRESKE
+ERRMX.WR = 1
+ERRMZ.WR = 2
+
+endif
+
+END_CHANGE
+
+
+
+
+LOAD
+
+DEBUG2 = DEBUG1+1
+debug3=debug1*2
+debug4=debug1*2+1
+debug5=0
+VAR1.VAR = "MER_PREC["<<DEBUG3<<"]"
+VAR2.VAR = "MER_POZ["<<DEBUG3<<"]"
+VAR3.VAR = "MER_BRZ["<<DEBUG3<<"]"
+VAR4.VAR = "MER_UGAO["<<DEBUG3<<"]"
+VAR5.VAR = "MER_DUZ["<<DEBUG3<<"]"
+VAR6.VAR = "MER_SONDA["<<DEBUG3<<"]"
+
+VAR7.VAR = "MER_X["<<DEBUG3<<"]"
+VAR8.VAR = "MER_Z["<<DEBUG3<<"]"
+VAR9.VAR = "MER_C["<<DEBUG3<<"]"
+
+VAR11.VAR = "MER_PREC["<<DEBUG4<<"]"
+VAR12.VAR = "MER_POZ["<<DEBUG4<<"]"
+VAR13.VAR = "MER_BRZ["<<DEBUG4<<"]"
+VAR14.VAR = "MER_UGAO["<<DEBUG4<<"]"
+VAR15.VAR = "MER_DUZ["<<DEBUG4<<"]"
+VAR16.VAR = "MER_SONDA["<<DEBUG4<<"]"
+
+VAR17.VAR = "MER_X["<<DEBUG4<<"]"
+VAR18.VAR = "MER_Z["<<DEBUG4<<"]"
+
+NACMERENJA.VAR = "MER_NACIN["<<DEBUG1<<"]"
+
+ERRX.VAR = "MER_GRES_X["<<DEBUG1<<"]"
+ERRZ.VAR = "MER_GRES_Z["<<DEBUG1<<"]"
+ERRc.VAR = "MER_GRES_c["<<DEBUG1<<"]"
+
+NOMprec.VAR = "nom_X["<<DEBUG1<<"]"
+NOMpoz.VAR = "nom_z["<<DEBUG1<<"]"
+
+ERRMX.VAR = "MER_DOZ_GRES_X["<<DEBUG1<<"]"
+ERRMZ.VAR = "MER_DOZ_GRES_Z["<<DEBUG1<<"]"
+ERRMc.VAR = "MER_DOZ_GRES_c["<<DEBUG1<<"]"
+
+BRZC1.VAR = "MER_BRZ_C["<<DEBUG3<<"]"
+MERkORAK1.VAR = "MER_KORAK["<<DEBUG3<<"]"
+MERBROJ1.VAR = "MER_BROJAC["<<DEBUG3<<"]"
+
+BRZC2.VAR = "MER_BRZ_C["<<DEBUG4<<"]"
+MERkORAK2.VAR = "MER_KORAK["<<DEBUG4<<"]"
+MERBROJ2.VAR = "MER_BROJAC["<<DEBUG4<<"]"
+
+  ls("menus","cmeni.com",1)
+  osca.VAR = "osca["<<BROJBRUS<<"]"
+  VAR0.VAR = "NACABRIHT["<<BROJBRUS<<"]"
+  hs4.se=3
+  hd=$89473<<" - "<<DEBUG2
+END_LOAD
+
+//END

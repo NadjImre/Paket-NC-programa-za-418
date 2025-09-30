@@ -1,0 +1,8 @@
+proc _SPEEDS(Real DOD3 ,Real DOD2 ,Real DOD1 ,Real DOD0 ,Real BROJOB3 ,Real BROJOB2 ,Real BROJOB1 ,Real BROJOB0 ,Real BRZU3 ,Real BRZU2 ,Real BRZU1 ,Real BRZU0 ,Real KORAK2 ,Real KORAK1 ,Real KORAK0 )
+
+dodb[0,3]=dod3 dodb[0,2]=dod2 dodb[0,1]=dod1 dodb[0,0]=dod0
+brzu[0,3]=brzu3 brzu[0,2]=brzu2 brzu[0,1]=brzu1 brzu[0,0]=brzu0
+brob[0,3]=brojob3 brob[0,2]=brojob2 brob[0,1]=brojob1 brob[0,0]=brojob0
+korak[0,2]=korak2 korak[0,1]=korak1 korak[0,0]=korak0
+
+M17

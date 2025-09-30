@@ -1,0 +1,27 @@
+PROC _PROFIL_DRESSING(STRING[32] BRTOC,INT DBROJTOC,INT DBROJTOC2,STRING[32] BrAbriht,Int DbrojAbriht,Int DbrojAbriht2,Int NacAbriht,Int BrojAbriht,Real BrzAbriht,Real VAR3,Real VAR4,Real Brzina_A,Int Tip2,Int Komadavar,Int Preostalovar,Int HLAD_A,Int OBLIK,String[100] KOMENT)
+
+
+Nazivtoc_A[0]=brtoc
+BrojIviceToc_A[0]=dbrojtoc
+BrojIviceToc_A[1]=dbrojtoc2
+NazivAbriht[0]=brabriht
+BrojIviceAbriht[0]=DBrojAbriht
+BrojIviceAbriht[1]=DBrojAbriht2
+
+nacin_a[0]=nacabriht
+brojprol[0]=brojabriht
+brza[0]=brzabriht
+korakx[0]=var3
+korakz[0]=var4
+brzkam_a[0]=brzina_a
+padajuci[0]=tip2
+komada[0]=komadavar
+preostalo[0]=preostalovar
+hladjenje_a[0]=hlad_a
+oblikam_a[0]=oblik
+komentar_a[0]=koment
+
+stopre
+al001
+
+M17

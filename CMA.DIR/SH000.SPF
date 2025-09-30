@@ -1,0 +1,124 @@
+PROC SH000(INT BROJ)
+
+DEF INT SVE 
+DEF REAL ZKON,XKON,CKON
+DEF INT SMERZ
+DEF REAL SMERX
+DEF STRING[100] NAZPROG
+
+IF((BROJ<0) OR (BROJ>89))
+  SETAL(65017,<<(BROJ))
+  M17
+ENDIF
+AktivniBroj=Broj
+DiamCorr=0 PosCorr=0
+ReturnDist=0
+BEZBEDNIX=$AA_IM[X]
+BEZBEDNIZ=$AA_IM[Z]
+r4=0 R2=0 R5=BROJ
+STOPRE
+M97
+; *** da li je spoljno brusenje ***
+if (OBLIKAM[BROJ]<>0)
+   SMERX=-0.5
+   SVE=1
+else
+   SMERX=0.5
+   SVE=1
+endif
+;osnovne postavke
+DIAMON    
+G60       
+G90
+G18
+SOFT
+;poruka
+msg("$66012"<<"-"<<komentar[broj])
+;kraj ako nema brusenja
+IF (BRUS[BROJ]==0) GOTOF KRAJ
+;standardni odskok              
+SETINT(8) PRIO=2 SH600
+STOPRE
+
+STOPRE
+; *** da li je levo ili desno celo *** 
+if (BRUSSMER[BROJ] <>0 )
+   SMERZ=-1
+   TRANS Z=ZKON C=CKON X=XKON
+else
+   SMERZ=1
+   TRANS Z=ZKON C=CKON X=XKON
+endif
+R50 = sve*PREC[BROJ,0]+2*SMERX*DODB[BROJ,2]
+R51 = POZZ[BROJ,0]+SMERZ*DODB[BROJ,2]
+R53 = 2*SMERX*DODB[BROJ,2]
+T=NazivToc[Broj] D=BrojIviceToc[Broj]
+;izbor nacina brusenja
+STOPRE
+NAZPROG = "SH" << BRUS[BROJ] << "(" << BROJ << "," << SVE << "," << smerz << "," << smerx << ")"
+STOPRE
+PONOVO:
+;korekcija precnika i pozicije 
+CKON=KORC[BROJ]
+XKON=(KORX[BROJ]+DiamCorr)/2
+ZKON=KORZ[BROJ]+PosCorr
+TRANS Z=ZKON C=CKON X=XKON
+;reset parametra
+BioJeOdskok=0
+EXECSTRING( NAZPROG )
+
+;kraj programa
+IF(ODSKOK_SKROZ[BROJ]<=0)
+  DIAMOF
+  T0D0G0G53M11M5 X=BEZBEDNIX
+  DIAMON
+ENDIF
+
+if(ODSKOK_SKROZ[BROJ]<0)
+  WAITP(Z)   
+  G0 G53 Z=BEZBEDNIZ M5
+ENDIF
+if(ODSKOK_SKROZ[BROJ]<-1)
+  WAITP(Z)   
+  G0 G53 x=parkprec
+  IF (BROJ_U_OSE>0) 
+     G0 G53 U=PARKUOSE
+  ENDIF
+ENDIF
+
+if(ODSKOK_SKROZ[BROJ]<-2)
+  G0 G53 Z=parkpoz
+ENDIF
+
+IF(ODSKOK_SKROZ[BROJ]==1)
+    
+ENDIF
+
+IF(ODSKOK_SKROZ[BROJ]==2)
+   G0 X=ODSKOK_BRUS[BROJ] M11 M5
+ENDIF
+
+STOPRE
+
+CLRINT(8)
+IF ((BIOJEODSKOK==0) OR (ODSKOKBEZMERENJA==0)) GOTOF GOTOVO
+KRAJ:
+ZV800(BROJ)
+msg("MMC active")
+MMC("popupdlg,picture_on,cmaska.com,popup","N")
+stopre
+msg("")
+m00
+MMC("popupdlg,picture_off","N")
+_APPROACH_QU(appAlat, appDBroj, appUgao, appKordsis, appNacZaokreta, appXZaokret, appZaokret, appPrilazX, appPrecPrilaz, appPrilazZ, appPozPrilaz, appUPoz, appQUgao, appBrVret, appKocenje)
+
+GOTOB PONOVO
+GOTOVO:
+OPERACIJA_BROJ=OPERACIJA_BROJ+1
+M98
+ZV800(BROJ)
+
+M17
+
+
+

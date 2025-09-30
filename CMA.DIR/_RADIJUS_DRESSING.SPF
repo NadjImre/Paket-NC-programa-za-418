@@ -1,0 +1,27 @@
+PROC _RADIJUS_DRESSING(STRING[32] BRTOC,INT DBROJTOC,STRING[32] BrAbriht,Int DbrojAbriht,Int NacAbriht,Int BrojAbriht,Real BrzAbriht,Real VAR3,Real Brzina_A,Int Smer,Int Tip2,Real Radijus, Real DuzinaX, Real DuzinaZ,Int Komadavar,Int Preostalovar,Int HLAD_A,Int OBLIK,String[100] KOMENT)
+
+
+Nazivtoc_A[0]=brtoc
+BrojIviceToc_A[0]=dbrojtoc
+NazivAbriht[0]=brabriht
+BrojIviceAbriht[0]=DBrojAbriht
+
+nacin_a[0]=nacabriht
+brojprol[0]=brojabriht
+brza[0]=brzabriht
+korakx[0]=var3
+brzkam_a[0]=brzina_a
+smer_a[0]=smer
+padajuci[0]=tip2
+komada[0]=komadavar
+preostalo[0]=preostalovar
+hladjenje_a[0]=hlad_a
+oblikam_a[0]=oblik
+komentar_a[0]=koment
+radudub[0]=Radijus
+cen_x[0]=DuzinaX
+cen_z[0]=DuzinaZ
+
+al002
+
+M17

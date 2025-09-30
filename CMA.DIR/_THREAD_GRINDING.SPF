@@ -1,0 +1,73 @@
+PROC  _THREAD_GRINDING(STRING[32] alat ,INT dbroj, Real UgaoBose, Real UgaoAose, int RacunajAosu, Real UgaoCose, Int Kordsis, Int NacZaokreta, Real XZaokret, Real Zaokret, Int PrilazX, Real PrecPrilaz, Int PrilazZ, Real PozPrilaz,int ODSKOK ,real PRECODSKOK)
+
+Def Int BrToc
+BrToc=Gett(alat)
+kordsys[0]=kordsis
+korak_n[0]=thpi
+nazivtoc[0]=ALAT
+brojivicetoc[0]=dbroj
+smer_n[0]=thha
+T0D0
+
+STOPRE
+If (NacZaokreta==0)
+   G53G0X=XZaokret
+Endif
+If (NacZaokreta==1)
+   G53G0Z=Zaokret
+Endif
+If (NacZaokreta==2)
+   G53G0X=XZaokret
+   G53G0Z=Zaokret
+Endif
+If (NacZaokreta==3)
+   G53G0Z=Zaokret
+   G53G0X=XZaokret
+Endif
+
+If (racunajaosu==1)
+  IF(THHA==0)
+    UGAOAOSE=-ATAN2(THPI,3.141*THD2)
+  ELSE
+    UGAOAOSE=ATAN2(THPI,3.141*THD2)
+  ENDIF
+ENDIF
+G0G53B=UgaoBose
+G0G53A=UgaoAose
+
+If (PrilazZ<>0)
+   G53G0Z=PozPrilaz
+Endif
+
+If (PrilazX==0)
+   G53G0X0
+Endif
+If (PrilazX==2)
+   G53G0X=PrecPrilaz
+Endif
+T=alat D=Dbroj G[8]=Kordsis
+If (PrilazX==1)
+   G0X=-$TC_DP3[brtoc,dbroj]
+Endif
+If (PrilazX==3)
+   G0X=-PrecPrilaz
+Endif
+
+M70
+if (thha==0)
+   C=IC(360) F=720
+   C=ACP(UgaoCose)
+else
+   C=IC(-360) F720
+   C=ACN(UgaoCose)
+endif
+
+odskok_skroz[0]=odskok 
+odskok_brus[0]=precodskok
+
+sh000
+
+
+M17
+
+

@@ -1,0 +1,61 @@
+PROC _THREAD_WHEEL(Real _thx1, real _thph,real _thx3, real _thxb, int _thtip, real _thnz, int _thpx, real _thdl)
+;pomocne promenljive
+DEF REAL Trigo
+DEF REAL SinAlfa
+Def Real SredSir
+;prepis promenjivih
+thx1 = _thx1
+;thx2 = _thx2
+thx3 = _thx3
+thxb = _thxb
+thph = _thph
+thtip = _thtip
+thnz = _thnz
+thpx = _thpx
+thdl = _thdl
+Stopre
+
+;visina zuba na kamenu - razlika precnika + korekcije
+thh=0.5*(thd0-thd1)+thx1 ;+thx2
+;sirina zuba na srednjem precniku - pola koraka + korekcija
+SREDSIR=0.5*thpi+thxb
+;u zavisnosti od nacina brusenja
+IF (thty==0) ; spoljno brusenje
+   ;visina glave zuba 
+   thh3 = 0.5*(thd2-thd1) ;+thx2
+   ;visina noge zuba
+   thh2 = 0.5*(thd0-thd2)+thx1
+ELSE ;unutrasnje brusenje
+   ;visina noge zuba
+   thh2 = 0.5*(thd2-thd1)+thx1
+   ;visina glave zuba
+   thh3 = 0.5*(thd0-thd2) ;+thx2
+ENDIF
+;pomocna promenljiva
+SinAlfa=SIN(tha1+tha2)
+;ako je pravougaoni navoj
+IF (ABS(SINALFA)<0.0001)
+   thh0=thh
+ELSE ;ako nije 
+   thh0 = thpi*COS(tha1)*COS(tha2)/SINALFA
+ENDIF
+;sirina vrha zuba na kamenu
+thb2 = SREDSIR-thh3*(TAN(tha1)+TAN(tha2))
+;sirina podnozja na kamenu
+thb1 = SREDSIR+thh2*(TAN(tha1)+TAN(tha2))
+;sirina vrha za navoj sa izlazom
+thb3 = thb1-(thh+thx1)*(TAN(tha1)+TAN(tha2))
+;pomocna promenljiva
+TRIGO=SIN(0.5*(tha1+tha2))/( COS(0.5*(tha1-tha2))- SIN(0.5*(tha1+tha2)) )
+;radijus glave zuba ako bi prelaz bio pun radijus
+thr3 = (0.5*thh0-thh3)*TRIGO
+;radijus noge zuba ako bi prelaz bio pun radijus
+thr0 = (0.5*thh0-thh2)*TRIGO
+;maksimalni radijus prelaza noge - levo koji dozvoljava korakcija X1 
+thr4=thx1/(1-sin(tha1))
+;maksimalni radijus prelaza noge desno koji dozvoljava korekcija X1
+thr5=thx1/(1-sin(tha2))
+STOPRE
+
+
+M17

@@ -1,0 +1,51 @@
+proc ms140(string[32] alat,int ivica,real prec_mer,real poz_mer,real duz_mer,real brz_mer,int msonde,int broj_sonde, int korekcija,int kord_system,real doz_greska,int poz_c,real c_mer)
+
+g18g500 t=alat d=ivica
+
+stopre
+msg("$66020")
+m=msonde
+if(poz_c<>0)
+  m70
+  G0 z=poz_mer meas=1 C=IC(360)
+else
+  G0 z=poz_mer meas=1
+endif
+IF($AC_MEA[broj_sonde]==1) GOTOF GRESKA
+if(poz_c<>0)
+  G0 C=ACP(C_MER) MEAS=1
+  IF($AC_MEA[broj_sonde]==1) GOTOF GRESKA
+endif
+g0 x=prec_mer+duz_mer meas=1
+IF($AC_MEA[broj_sonde]==1) GOTOF GRESKA
+STOPRE
+g1 x=prec_mer-duz_mer f=brz_mer meas=1
+IF($AC_MEA[broj_sonde]==0) GOTOF GRESKA
+RAZLIKA=prec_mer-$aa_mw[X]
+msg("$66021 "<<$aa_mw[X]<<" $66022 "<<RAZLIKa)
+g1 x=prec_mer+duz_mer F=brz_mer
+msonde=msonde+1
+G75X0
+m=msonde
+
+IF( (DOZ_GRESKA>0) AND (DOZ_GRESKA<ABS(RAZLIKA))) 
+  SETAL(65012)
+  M00
+  M96
+ENDIF
+
+IF(KOREKCIJA>0)
+;  $P_UIFR[KORD_SYSTEM-1,X,FI]=-RAZLIKA
+;  msg("$66023")
+ENDIF
+
+m17
+
+greska:
+
+SETAL(65002)
+M00
+M96
+
+m17
+

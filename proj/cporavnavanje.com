@@ -1,0 +1,182 @@
+
+//M(REZIMIPORAV/$89151)
+;FB289
+;februar 2020
+
+DEF DEBUG1 = (I/1,90/1/,$89515////235/375,,50)
+
+DEF BRTOC = (S///,"Alat za brusenje"////235,,190/375,,95//"pomoc.html","9007"),
+DEF DBROJTOC = (I///,,"D"////500,25,20/500,25,40)
+DEF DBROJTOC2 = (I///,,"D"////500,45,20/500,45,40)
+
+DEF BRAbriht = (S///,"Abrihter"////235,65,190/375,65,95//"pomoc.html","9007"),
+DEF DBROJAbriht = (I///,,"D"////500,65,20/500,65,40)
+
+DEF DBROJAbriht2 = (I///,,"D"////500,85,20/500,85,40)
+
+DEF NACIN = (I/*0="Bez poravnavanja",300="Samo levo", 310="Samo desno",320="Sa obe strane",900="Korisnički profil"//,$89165,,/WR2///235/375,,165//"POMOC.HTML","9302")
+
+DEF BROJABRIHT = (IDD/,//$89048,$89232,"N",$89067////235,,190/430,,110//"POMOC.HTML","9303")
+DEF BRZABRIHT = (R1/,//$89233,$89234,"VA",$89070////235,,190/430,,110//"POMOC.HTML","9304")
+DEF VAR3 = (R3/0.0,0.25//$89230,$89231,"SX",$89068////235,,190/430,,110//"POMOC.HTML","9305")
+DEF VAR4 = (R3/0.0,0.25//$89230,,"SZ",$89068////235,,190/430,,110//"POMOC.HTML","9306")
+DEF BRZINA_A = (R3/10,100//,$89567,"Va",$89074/LI3,///235,,190/430,,110//"pomoc.html","9044")
+;DEF SMER = (I/* 0=$89191,1=$89192//,$89193,,/WR2///235,,180/430,,110//"POMOC.HTML","9307")
+
+;Def TIP2=(IDD/* 0=$89642,1=$89643//,$89641,""/WR2///235,,180/430,,110)
+DEF KOMADA = (IDD/0,100//$89055,$89199,"",$89073////235,,180/430,,110//"POMOC.HTML","9307")
+DEF PREOSTALO = (IDD/0,100//,$89167,"",$89073////235,,180/430,,110//"POMOC.HTML","9308")
+DEF HLAD_A = (IDD/10,15/10/,$89568,,$89067/WR2,ac2///235,,195/430,,110//"pomoc.html","9011")
+
+DEF KOMENT = (S///,$89569,////235,,80/320,,220//"POMOC.HTML","9017")
+;DEF SMERX = (I/* 0="Minus",1="Plus"//,$89293,"",/WR2///235,,180/415,,125//"pomoc.html","9030")
+;DEF PRILAZ = (I/* 0="Z->X",1="X->Z"//,$89294,"",/WR2///235,,180/415,,125//"pomoc.html","9030")
+;DEF ODSKOK = (I/* 0=$89296,1=$89297//,$89295,"",/WR2///235,,180/415,,125//"pomoc.html","9030")
+;DEF OBLIK = (IDD/*OblikKamNiz//,$89400,,/wr2///235,,180/415,,125//"pomoc.html","9005")
+DEF _NAZIV_KRIVE = (S///,$89581,,".DRS"////255,,200/350,,205)
+
+DEF TOCILO=(IDD////WR4)
+DEF MAKS=(IDD////WR4//"ACIK_BROJ")
+DEF MAKSA=(IDD////WR4//"MAXABRIBROJ")
+DEF MAKSTOC=(IDD////WR4//"MAXBROJTOC")
+DEF KOCNICA = (I/* 0=$89406,1=$89407, 2=$89408//,$89405/WR4///255,,200/435,,120//"POMOC.HTML","9018")
+DEF SLIKA = (I///,,,/WR1///0,0,250,350/0,320,25,32) 
+
+VS1=("+",,SE1)
+VS2=("-",,SE1)
+VS3=("",,SE2)
+VS4=($89564,,se1)
+VS5=("",,SE2)
+VS6=("",,SE2)
+
+HS1=(,,)
+HS2=(,,)
+HS3=(,,)
+HS4=(,,)
+HS5=(,,)
+HS6=(,,)
+HS7=(,,)
+HS8=(,,)
+
+PRESS(HS1)
+   LM("BRUSENJE","CENTAR.COM")
+END_PRESS
+
+PRESS(HS3)
+   LM("SONDA","CSONDA.COM")
+END_PRESS
+
+PRESS(HS4)
+   LM("KOMAD","CKOMAD.COM")
+END_PRESS
+
+PRESS(HS5)
+   LM("ABRIHT","CABRIHT.COM")
+END_PRESS
+
+PRESS(HS6)
+   LM("TOCILO","CTOCILO.COM")
+END_PRESS
+
+PRESS(HS7)
+   LM("REZIMIPORAV","CPORAVNAVANJE.COM")
+END_PRESS
+
+PRESS(HS8)
+  LM("BRUSENJE","CBRUSENJE.COM")
+END_PRESS
+
+PRESS(VS1)
+  IF(REG[7]>=(MAKSA-1))
+    REG[7]=0
+    DEBUG1=1
+  ELSE
+    REG[7]=REG[7]+1
+    DEBUG1=DEBUG1+1
+  ENDIF
+  CALL("UPIS2")
+END_PRESS
+
+PRESS(VS2)
+  IF(REG[7]<=0)
+    REG[7]=MAKSA-1
+    DEBUG1=MAKSA
+  ELSE
+    REG[7]=REG[7]-1
+    DEBUG1=DEBUG1-1
+  ENDIF
+  CALL("UPIS2")
+END_PRESS
+
+
+PRESS(VS4)
+   LM("Profil","cprofil1.com")
+END_PRESS
+
+PRESS(VS6)
+  LM("PORAVNAVANJE","CPORAVNAVANJE.COM")
+END_PRESS
+
+CHANGE(DEBUG1)
+  REG[7]=DEBUG1-1
+  CALL("UPIS2")
+END_CHANGE
+
+CHANGE(NACIN)
+   SLIKA.ST = "\\am" << NACIN << ".png"
+END_CHANGE
+
+LOAD
+  IF(REG[7].VLD==FALSE)
+    REG[7]=0
+  ENDIF
+  DEBUG1=REG[7]+1
+  LA("ARR5","CNIZOVI.COM")
+  LA("OblikKamNiz","cnizovi.com")
+  LB("HKL","CHKL.COM")
+  CALL("TEKST")
+
+  LB("PROG2","CPORAVNAVANJE.COM")
+  CALL("UPIS2")
+  BRTOC.MAX=MAKSTOC
+END_LOAD
+
+//END
+
+
+//B(PROG2)
+
+SUB(UPIS2)
+
+   HD=$89151<<" "<<REG[7]+1
+
+   TOCILO.VAR = "TOCILO_A["<<REG[7]<<"]"
+   NACIN.VAR = "NACIN_A["<<REG[7]<<"]"
+   BROJABRIHT.VAR = "BROJPROL["<<REG[7]<<"]"
+   BRZABRIHT.VAR = "BRZA["<<REG[7]<<"]"
+   VAR3.VAR = "KORAKX["<<REG[7]<<"]"
+   VAR4.VAR = "KORAKZ["<<REG[7]<<"]"
+;   SMER.VAR =  "SMER_A["<<REG[7]<<"]"
+;   OBLIK.VAR = "OBLIKAM_A["<<REG[7]<<"]"
+   KOMENT.VAR = "KOMENTAR_A["<<REG[7]<<"]"
+   KOMADA.VAR = "KOMADA["<<REG[7]<<"]"
+   PREOSTALO.VAR =  "PREOSTALO["<<REG[7]<<"]"
+   KOCNICA.VAR= "KOCNICA_A["<<REG[7]<<"]"
+   DBROJTOC.VAR = "BrojIviceToc_A["<<(2*Reg[7])<<"]"
+   DBROJTOC2.VAR = "BrojIviceToc_A["<<(2*Reg[7]+1)<<"]"
+   BRTOC.Var="NazivToc_A["<<(REG[7])<<"]"
+   DBROJABRIHT.VAR = "BrojIviceAbriht["<<(2*Reg[7])<<"]"
+   DBROJABRIHT2.VAR = "BrojIviceAbriht["<<(2*Reg[7]+1)<<"]"
+   BRAbriht.Var="NazivAbriht["<<REG[7]<<"]"
+   BRZINA_A.VAR = "BRZKAM_A["<<REG[7]<<"]"
+;   TIP2.VAR = "PADAJUCI["<<REG[7]<<"]"
+   HLAD_A.VAR = "HLADJENJE_A["<<REG[7]<<"]"
+;   SMERX.VAR =  "SMER_AX["<<REG[7]<<"]"
+;   PRILAZ.VAR =  "PRILAZ_A["<<REG[7]<<"]"
+;   ODSKOK.VAR = "ODSKOK_A["<<REG[7]<<"]"
+   SLIKA.ST = "\\am" << NACIN << ".png" 
+   _NAZIV_KRIVE.VAR = "NAZIV_KRIVE["<<REG[7]<<"]"
+END_SUB
+
+//END
+

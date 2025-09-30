@@ -1,0 +1,26 @@
+PROC _THREAD_DRESSING(STRING[32] BRTOC,INT DBROJTOC,STRING[32] BrAbriht,Int DbrojAbriht,Int DbrojAbriht2,Int NacAbriht,Int BrojAbriht,Real BrzAbriht,Real VAR3,Real Brzina_A,Int Komadavar,Int Preostalovar,Int HLAD_A,Int OBLIK,String[100] KOMENT)
+
+
+Nazivtoc_A[7]=brtoc
+BrojIviceToc_A[7]=dbrojtoc
+NazivAbriht[7]=brabriht
+BrojIviceAbriht[7]=DBrojAbriht
+BrojIviceAbriht[8]=DBrojAbriht2
+
+nacin_a[7]=THPR
+nacin_a[8]=nacabriht
+brojprol[7]=brojabriht
+brza[7]=brzabriht
+korakx[7]=var3
+brzkam_a[7]=brzina_a
+komada[7]=komadavar
+preostalo[7]=preostalovar
+hladjenje_a[7]=hlad_a
+oblikam_a[7]=oblik
+komentar_a[8]=koment
+
+stopre
+
+AL007(7)
+
+M17

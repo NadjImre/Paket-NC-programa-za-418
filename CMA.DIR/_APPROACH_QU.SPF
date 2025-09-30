@@ -1,0 +1,171 @@
+PROC _APPROACH_QU(String[32] Alat, Int DBroj, Real Ugao, Int Kordsis, Int NacZaokreta, Real XZaokret, Real Zaokret, Int PrilazX, Real PrecPrilaz, Int PrilazZ, Real PozPrilaz, Real UPoz, Real QUgao, Int BrVret, Int kocenje)
+
+Def Int BrToc
+Def int KocenjeB,KocenjeQ
+Def Real GreskaB,GreskaQ
+Def Int TrebaB, TrebaQ
+
+APPAlat=alat
+APPDBroj=dbroj
+APPUgao=ugao
+APPKordsis=kordsis
+APPNacZaokreta=naczaokreta
+APPXZaokret=xzaokret
+APPZaokret=zaokret
+APPPrilazX=prilazx
+APPPrecPrilaz=precprilaz
+APPPrilazZ=prilazz
+APPPozPrilaz=pozprilaz
+APPUPoz=upoz
+APPQUgao=qugao
+APPBrVret=brvret
+appkocenje=kocenje
+
+BrToc=Gett(alat)
+
+;isčitavanje vrednosti za kočenje
+;broj kočenja sa B je ostatak pri deljenju (mod) sa 10
+KocenjeB = kocenje mod 10
+;greška kočenja sa B je deljenje sa 10 i odbacivanje decimala 
+;svođenje na tri zadnje cifre sa mod i deljenje sa deset hiljada
+GreskaB = (trunc(kocenje/10) mod 1000) / 10000
+If (GreskaB == 0)
+   GreskaB=0.001
+EndIf
+;kocenje sa Q je deljenje sa 10000 odbacivanje decimala i uzimanje prve cifre
+KocenjeQ = (trunc(kocenje/10000)+1) mod 10
+;greska Q je deljenje sa sto hiljada odbacivanje decimala svođenje na zadnje tri cifre i deljenje sa 
+;deset hiljada
+GreskaQ = (trunc(kocenje/100000) mod 1000) / 10000
+If (GreskaQ==0)
+   GreskaQ=0.001
+EndIf
+;pomocne promenljive
+TrebaB=KocenjeB
+TrebaQ=KocenjeQ
+;alat , koord sistem i odskok
+G500
+T0D0
+SETINT(8) PRIO=1 SH600
+
+STOPRE
+if ((abs(ugao-$VA_IM[B]) < GreskaB) AND ( abs(Qugao-$VA_IM[Q]) < GreskaQ )) gotof Nastavak
+
+If (NacZaokreta==0)
+   G53G0X=XZaokret
+Endif
+If (NacZaokreta==1)
+   G53G0Z=Zaokret
+Endif
+If (NacZaokreta==2)
+   G53G0X=XZaokret
+   G53G0Z=Zaokret
+Endif
+If (NacZaokreta==3)
+   G53G0Z=Zaokret
+   G53G0X=XZaokret
+Endif
+
+M2=5
+STOPRE
+PokusajPonovoB:
+if ( abs(ugao-$VA_IM[B]) > GreskaB )
+  G0 G53 B=Ugao 
+  If (TrebaB>0)
+     ;cekanje da se pozicioniranje završi
+     G4 F3
+     ;kocnica se aktivira
+     M28
+     ;cekanje na kocnicu
+     G4 F1
+     ;ispisujemo poruku
+     Msg("$66024")
+     ;provera pozicije posle kocenja - ako je pomeranje veliko pokušaj ponovo
+     if ( abs(ugao-$VA_IM[B]) > GreskaB )
+        if (KocenjeB>0)
+          KocenjeB = KocenjeB-1
+          G1F10B=ugao+0.2
+          gotob PokusajPonovoB
+        else
+          msg("$66027")
+          m00
+          m96
+          stopre
+      endif
+    endif
+    ;poruka da je sve ok
+    msg( "$66024 " << (ugao-$VA_IM[B]) )
+  Endif
+Endif
+
+PokusajPonovoQ:
+if ( abs(Qugao-$VA_IM[Q]) > GreskaQ )
+  G0 G53 Q=QUgao
+  If (TrebaQ>0)
+     ;cekanje da se pozicioniranje završi
+     G4 F3
+     ;kocnica se aktivira
+     M20
+     ;cekanje na kocnicu
+     G4 F1
+     ;ispisujemo poruku
+     Msg("$66025")
+     ;provera pozicije posle kocenja - ako je pomeranje veliko pokušaj ponovo
+     if ( abs(Qugao-$VA_IM[Q]) > GreskaQ )
+       if (KocenjeQ>0)
+          KocenjeQ = KocenjeQ-1
+          G1F10Q=QUgao+0.2
+          gotob PokusajPonovoQ
+       else
+          msg("$66026")
+          m00
+          m96
+          stopre
+       endif
+     endif
+    ;poruka da je sve ok
+    msg( "$66025 " << (Qugao-$VA_IM[Q]) )
+  Endif
+Endif
+
+Nastavak:
+G0 G53 U=UPoz
+stopre
+
+msg("")
+R99=BrVret
+Kamen=BrVret
+STOPRE
+M27
+
+nazivtoc[0]=alat
+brojivicetoc[0]=dbroj
+kordsys[0]=kordsis
+
+If (PrilazZ<>0)
+   G53G0Z=PozPrilaz
+Endif
+
+If (PrilazX==0)
+   G53G0X0
+Endif
+If (PrilazX==2)
+   G53G0X=PrecPrilaz
+Endif
+T=alat D=Dbroj G[8]=Kordsis
+If (PrilazX==1)
+   G0X=-$TC_DP3[brtoc,dbroj]
+Endif
+If (PrilazX==3)
+   G0X=PrecPrilaz
+Endif
+CLRINT(8)
+Stopre
+
+;za odskok
+aktivniKamen=BRTOC
+aktivnaostrica=dbroj
+aktivnikoordsis=kordsis
+aktivnialat=alat
+M17
+

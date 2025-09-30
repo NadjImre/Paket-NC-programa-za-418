@@ -1,0 +1,27 @@
+PROC _GRINDING_DRESSING(STRING[32] BRTOC ,INT DBROJTOC ,INT NACBRUSVAR ,INT SMER ,REAL PREC0VAR ,REAL PREC1VAR ,REAL POZZ1 ,REAL POZZ2 ,INT BROJMER ,INT BROJMERZ ,REAL VAR15 ,REAL VAR16 ,REAL XSAFE ,REAL ZSAFE,INT KORDSYSVAR ,INT OBLIK ,INT BRZINA ,INT HLADJENJEVAR ,STRING[100] PROGRAM_PRILAZ  ,STRING[100] KOMENT )
+
+nazivtoc[0]=brtoc
+brojivicetoc[0]=dbrojtoc
+BRUS[0]=nacbrusvar
+brussmer[0]=smer
+prec[0,0]=prec0var
+prec[0,1]=prec1var
+pozz[0,0]=pozz1
+pozz[0,1]=pozz2
+mer_brus[0]=brojmer
+mer_brus_z[0]=brojmerz
+korx[0]=var15
+korz[0]=var16
+bezprec[0]=xsafe
+bezpoz[0]=zsafe
+kordsys[0]=kordsysvar
+oblikam[0]=oblik
+brzkam[0]=brzina
+hladjenje[0]=hladjenjevar
+prog_prilaz[2]=program_prilaz
+komentar[0]=koment
+
+SP011
+
+
+M17

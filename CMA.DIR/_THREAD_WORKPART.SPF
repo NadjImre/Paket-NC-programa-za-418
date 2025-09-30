@@ -1,0 +1,25 @@
+Proc  _THREAD_WORKPART(INT NACBRUSVAR ,REAL POZZ1 ,REAL POZZ2 ,REAL VAR15 ,REAL VAR16 ,INT OBLIK ,INT BRZINA ,INT HLADJENJEVAR, Real DuzinaHoda ,Real UgaoIzlaza, INT ANACIN3,STRING[100] APROG1,  REAL AAbriht1, real Aodskok1, STRING[100] KOMENT )
+
+BRUS[0]=nacbrusvar
+
+prec[0,0]=thd1
+prec[0,1]=thd1+thko
+pozz[0,0]=pozz1
+pozz[0,1]=pozz2
+korx[0]=var15
+korz[0]=var16
+oblikam[0]=oblik
+brzkam[0]=brzina
+hladjenje[0]=hladjenjevar
+komentar[0]=koment
+
+Kor_Abriht[2,2]=Aabriht1
+prhod=DuzinaHoda
+Naziv_Abriht[2,2]=aprog1
+Brob_n[2,2]=Aodskok1
+Brob_n[0,2]=Aodskok1
+prugao=UgaoIzlaza
+
+
+
+M17

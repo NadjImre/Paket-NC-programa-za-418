@@ -1,0 +1,205 @@
+PROC AL007(INT BROJ)
+
+;M broj za vodu
+DEF INT shp=11
+;M broj za rolnu
+DEF INT mROLNA=20
+;T broj za tocilo
+DEF INT BRTOC
+;brojac za broj prolaza
+DEF INT BROJAC
+;naziv ciklusa za poravnavanje
+DEF STRING[100] PROGRAM
+;broj obrtaja kamena
+DEF INT BROBKAM
+;T broj dijamnanta - abrihtera
+DEF INT BRDIA
+;Z pozicija za pocetak poravnavanja
+DEF REAL POCETAKZ
+;sirina kamena
+DEF REAL SIRINA
+;broj vretena na kojem je kamen
+DEF INT SPINU
+;unutrasnje ili spoljno abrihtovanje
+DEF REAL UNUT   
+;smer poravnavanja
+def int smer_por
+;provera broja - izlazi bez upozorenja!
+if ((Broj<0) OR (Broj>79)) gotoF kraj
+;preuzimanje T broja tocila - nedostaje provera
+BRTOC = GETT(NazivToc_a[BROJ])
+;preuzimanje T broja dijamanta - nedostaje provera
+BRDIA = GETT(NazivAbriht[BROJ])
+;proračun broja obrtaja kamena
+BROBKAM = ABS(19099*BrzKam_a[BROJ]/$TC_DP3[BRTOC,1])
+;podhod po Z i start Z za korisnicki profil
+IF(thpr==7)
+    POCETAKZ=THSZ
+ELSE
+    POCETAKZ=PODHODZ[BROJ]
+ENDIF
+
+;preuzimanje sirine kamena
+SIRINA = $TC_TPG5[BRTOC]
+;preuzimanje broja vretena kamena
+SPINU = $TC_TPG1[BRTOC]
+stopre
+;provera da li je testiranje
+if (TEST<>0)
+;ako nije testiranje preuzeti m funkciju i GUDa
+   shp=hladjenje_A[Broj]
+;provera da li je abrihter rolna 
+   IF (($TC_DP1[BRDIA,1]==494) OR ($TC_DP1[BRDIA,1]==496))
+;ako jeste m za start rolne
+      mROLNA = 21
+   ENDIF
+;start kamena
+   M[SPINU]=3 S[SPINU]=BroBKam
+ENDIF
+
+;preuzimane spoljno/unutarnje
+UNUT=1 PREKIDU=FALSE
+IF (OBLIKAM_A[BRoj]<>0)
+   UNUT=-1 PREKIDU=TRUE
+ENDIF
+;preuzimanje levo/desno
+smer_por=1
+if(smer_a[broj]<>0)
+  smer_por=-1
+endif
+
+;bezbedna udaljenos od tocila visina profila + podhod i start X za korisnicki profil
+IF(thpr==7)
+    prekidxa=thsx
+ELSE
+    prekidxa=unut*(thh+thph)
+ENDIF
+
+;provera da li se abrihtuje sa dve ivice
+IF (NACIN_A[BROJ+1]==310)
+;ako se abrihtuje sa dve oštrice
+   IF (thnz==1); jednoprofilni navoj
+      IF (thpr==0) ;trouglasti
+         PROGRAM = "AL110("<<broj<<")"
+      ENDIF;kraj trouglastog
+      IF ( (thpr==1) or (thpr==3)) ;trapez i testera
+         PROGRAM = "AL120("<<BROJ<<")"
+      ENDIF;kraj trapeza
+      IF ((thpr==4) or (thpr==5));ne ide trapez ili testera
+         PROGRAM = "AL130("<<BROJ<<")"
+      ENDIF
+      IF (thpr==2) ; Obli navoj
+         PROGRAM = "AL140("<<BROJ<<")"
+      ENDIF
+      IF (thpr==6) ; radijusni navoj
+         PROGRAM = "AL150("<<BROJ<<")"
+      ENDIF
+      IF (thpr==7) ; korisnicki profil
+         PROGRAM = "/_N_DRS_DIR/_N_"<<THNKONT<<"_DRS"
+      ENDIF
+      IF (thpr==8) ; navoj sa krivolinijskim bokom
+         PROGRAM = "AL170("<<BROJ<<")"
+      ENDIF
+      IF (thpr==9) ; kvadratni navoj proizvoljne sirine
+         PROGRAM = "AL125("<<BROJ<<")"
+      ENDIF
+      IF (thpr==10) ; gotski profil navoja
+         PROGRAM = "AL190("<<BROJ<<")"
+      ENDIF
+   ENDIF ;KRAJ jednoprofilno
+ENDIF ;KRAJ DVE OSTRICE
+IF (NACIN_A[BROJ+1]==300)
+; alat sa jednom ostricom
+   IF (thpr==0) ;ako je trouglasti profil
+      PROGRAM = "AL800("<<BROJ<<")"
+   ENDIF
+   IF (thpr==6) ;ako je radijusni profil
+      PROGRAM = "AL151("<<BROJ<<")"
+   ENDIF
+   IF (thpr==8) ;ako je krivolinijski profil
+      PROGRAM = "AL180("<<BROJ<<")"
+   ENDIF
+   IF (thpr==7) ;ako je korisnicki profil
+      PROGRAM = "/_N_DRS_DIR/_N_"<<THNKONT<<"_DRS"
+                ;"/_N_DRS_DIR/_N_"<<progprof[broj]<<"_DRS"
+      ;POCETAKZ=SMER_POR*PODHODZ[BROJ]
+      ;PREKIDXA=PODHODX[BROJ]
+   ENDIF
+ENDIF ; za jednu ostricu
+IF (NACIN_A[BROJ+1]==320) 
+; profilni alat
+   PROGRAM = "AL530("<<BROJ<<")"
+   POCETAKZ=0
+ENDIF ;kraj za profilni alat
+
+;pocetne postavke
+DIAMOF
+G18
+STOPRE
+IF ((NACIN_A[BROJ+1]==300) OR (NACIN_A[broj+1]==320))
+; ako se ne abrihtuje sa sa dve ostrice onda se koristi D1
+   T=NazivAbriht[BROJ] D1 
+ELSE
+;ako se radi sa dve pocinje sa D2
+   T=NazivAbriht[BROJ] D2
+ENDIF
+;Translacija za precnik kamena
+Trans X=$TC_DP3[BRTOC,1]/2 Z=$TC_DP4[BRTOC,1]+KORZ[BROJ+1]
+;prekid
+SETINT(8) PRIO=1 AL601
+;prilaz zavisno da li je spoljni ili unutrasnji
+IF(unut>0)
+;ako je spoljni pocetak po Z
+   G0 Z=POCETAKZ 
+;pa pocetak po X
+   G0 X=prekidxa M=shp M=mROLNA
+ELSE
+;ako je unutrasnji pocetak po X
+   G0 X=prekidxa 
+;pa po Z
+   G0 Z=POCETAKZ M=shp M=mROLNA
+ENDIF
+;petlja za prolaz
+FOR BROJAC=1 TO BROJprol[BROJ]
+;poruka
+   MSG("PROLAZ "<<BROJAC<<"/"<<BROJprol[BROJ])
+;pocetak jos jednom
+   G0 Z=POCETAKZ
+;spanovanje
+   $TC_DP3[BRTOC,1]=$TC_DP3[BRTOC,1]-unut*korakx[BROJ]
+;prebacivanje na drugu ostricu alata
+;   $TC_DP3[BRTOC,2]=-$TC_DP3[BRTOC,1]
+   STOPRE
+;spanovanje stupa na snagu
+   Trans X=$TC_DP3[BRTOC,1]/2 Z=$TC_DP4[BRTOC,1]+KORZ[BROJ+1]
+;postavka brzine brusenja
+   G1 F=BRZA[BROJ]
+   IF (NACIN_A[BROJ]==7)
+;ako je korisnicki profil
+      CALL PROGRAM
+   ELSE
+;ako nije korisnicki profil
+      EXECSTRING( PROGRAM )
+   ENDIF
+;povalcenje na visinu kamena
+   DIAMOF
+   G0 X=prekidxa
+ENDFOR
+;kraj abrihtovanja
+T0 D0 G0 G53 G90 M11 M20
+;provera da li je spoljno
+IF (oblikam_a[broj]==0)
+;ako jeste nazad po X
+   G75X0
+ELSE
+;ako nije prvo nazad po z
+  G75Z0
+;pa po X
+   G75X0
+ENDIF
+
+CLRINT(8)
+STOPRE
+kraj:
+
+M17

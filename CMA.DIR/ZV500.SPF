@@ -1,0 +1,50 @@
+PROC ZV500(INT BROJ,REAL XDOD, REAL ZDOD, REAL MENJAC,INT SVE)
+;doskok OBICAN
+
+DEF REAL SMER_UGLA
+DEF REAL UGAO
+;**promenljive za odskok
+DEF REAL GDE_SMO_X, GDE_SMO_Z
+AktivnaSTRANAUnutrasnjeg = sve
+AktivnoUnutrasnje = 0.5*XDOD
+AktivnaSTRANACeonog=ZDOD
+PREKIDX = SVE*PREC[BROJ,0]+XDOD*DODB[BROJ,3]
+PREKIDZ = POZZ[BROJ,0]+ZDOD*DODB[BROJ,3]
+;**pamtimo gde smo, u slucaju odskoka ovde se vracamo
+GDE_SMO_X = $AA_IW[X]
+GDE_SMO_Z = $AA_IW[Z]
+R3=0 R4=0 R6=0 R7=0
+STOPRE
+;**setujemo odskok
+SETINT(8) PRIO=1 SH6201
+G0 Z=PREKIDZ
+ZV100(BROJ)
+IF(MENJAC>0)
+  M3 S=abs(MENJAC)
+ENDIF
+G0 X=PREKIDX
+M01
+STOPRE
+
+;dok prilazi do dodatka za grubo brusenje ceka signal kompenzatora
+impuls_glave[4]=0
+SETINT(4) PRIO=1 SH640
+G1 X=SVE*PREC[BROJ,0]+XDOD*DODB[BROJ,2] Z=POZZ[BROJ,0]+ZDOD*DODB[BROJ,2] F=BRZU[BROJ,3]
+ClrInt(4)
+STOPRE
+M17
+;** dovde program moze da dodje samo posle odskoka
+KRAJ:
+;;**idemo po x na pocetni polozaj, ako x nije pomeran nema kretanja
+G0 X=GDE_SMO_X
+;**vracamo se po z na pocetni polozaj
+G0 Z=GDE_SMO_Z
+;**gasimo kamen
+ZV800(BROJ)
+;**reset programa
+M96
+;**da spreci poruke za gresku
+STOPRE
+M17
+
+

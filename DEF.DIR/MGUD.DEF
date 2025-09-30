@@ -1,0 +1,64 @@
+;Prarametri navoja
+;1.Parametri profila navoja
+DEF CHAN INT thty ; 0-spoljni, 1-unutrašnji navoj
+Def Chan Int thpr ; profil navoja
+Def Chan Real thd0,thd1,thd2 ; prečnici navoja
+Def chan real thpi ; korak navoja
+Def chan int thha ; smer navoj 0- desni 
+Def chan int thst ; broj početaka navoja
+Def chan real thko ; konus navoja
+Def chan real tha1, tha2 ; uglovi navoja
+Def chan real thr ; radijus boka kod navoja sa krivolinijskim bokom
+Def chan real thr0, thr1, thr2, thr3, thr4, thr5 ; radijusi navoja
+Def chan real thh, thh0, thh1, thh2, thh3 ; visine navoja
+Def chan real thb1, thb2, thb3 ; širine navoja
+Def chan String[32] thna ; naziv profila navoja
+Def chan real thsx ; start X
+Def chan real thsz ; start Z
+Def chan String[32] thnkont ; naziv konture
+
+
+
+;parametri tocila navoja
+Def chan Real thx1 ; parametar X1 sa starog sistema – podizanje podnožja 
+Def chan Real thx2 ; parametar X2 sa starog sistema – podizanje vrha kamena 
+def chan real thx3 ; parametar x3 - položaj prvog zuba od leve ivice kamena
+Def chan real thph ; podhod 
+Def chan real thxb ; korekcija širine kamena
+Def chan int thtip ; tip abrihtovanja
+Def chan real thnz ; broj zuba na kamenu ako je višeprofilni kamen
+Def chan int thpx ; skaliranje koraka na kamenu,razmak zuba je ovoliko puta veći od koraka navoja
+Def chan real thdl ; smanjenje veličine zuba na višeprofilnom kamenu
+
+;parametri leđne obrade
+Def chan String[32] retab ; naziv tabele za leđno brušenje
+Def chan Int retip ; tip, preko tabele, isključeno ili uključeno spirano
+Def chan Real redub ; dubina leđnog brušenja 
+Def chan Int rezub ; broj zuba alata
+Def chan Real repro ; procenat ugla koji se brusi leđnog
+Def chan Real rekor ; korak spirale kod leđnog brušenje – ne koristi se, za buduća proširenja 
+
+;parametri pritupljenja
+def chan real prhod
+def chan real prugao 
+
+;PARAMETRI ZA PRILAZ I ZAOKRET
+;VREDNOSTI PARAMETARA SA KOJIM JE PRILAZ ZADNJI PUT POZVAN
+DEF CHAN String[32] APPAlat
+DEF CHAN Int APPDBroj
+DEF CHAN Real APPUgao
+DEF CHAN Int APPKordsis
+DEF CHAN Int APPNacZaokreta
+DEF CHAN Real APPXZaokret
+DEF CHAN Real APPZaokret
+DEF CHAN Int APPPrilazX
+DEF CHAN Real APPPrecPrilaz
+DEF CHAN Int APPPrilazZ
+DEF CHAN Real APPPozPrilaz
+DEF CHAN Real APPUPoz
+DEF CHAN Real APPQUgao
+DEF CHAN Int APPBrVret
+DEF CHAN Int APPkocenje
+DEF CHAN INT BioJeOdskok
+DEF CHAN INT OdskokBezMerenja
+M30

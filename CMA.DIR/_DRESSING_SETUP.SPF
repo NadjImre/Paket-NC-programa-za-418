@@ -1,0 +1,14 @@
+PROC _DRESSING_SETUP(STRING[100] APROG1, Int ANacin1, REAL AAbriht1, real Aodskok1, INT ANACIN2, INT ANACIN3 )
+
+Kor_Abriht[2,2]=Aabriht1
+ABRIHT[2,0]=Anacin3
+naziv_ABRIHT[2,2]=aprog1
+brob_n[2,2]=Aodskok1
+brob_n[0,2]=Aodskok1
+ABRIHT[2,2]=Anacin1
+ABRIHT[2,1]=Anacin2
+
+
+STOPRE
+
+M17

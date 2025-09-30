@@ -1,0 +1,14 @@
+Proc _FEEDS(Real BRZO2 ,Real BRZO1 ,Real BRZO0 ,Real IZBR2 ,Real IZBR1 ,Real IZBR0 ,Real BROB2 ,Real BROB1 ,Real BROB0 ,Real ZADR12 ,Real ZADR11 ,Real ZADR10 ,Real ZADR22 ,Real ZADR21 ,Real ZADR20 ,Real PRIMICANJE2 ,Real PRIMICANJE1 ,Real PRIMICANJE0 ,Real OSCILA2 ,Real OSCILA1 ,Real OSCILA0  ,STRING[32] KOMENT)
+
+BRZO[0,2]=brzo2 BRZO[0,1]=brzo1 BRZO[0,0]=brzo0
+IZBR[0,2]=izbr2 IZBR[0,1]=izbr1 IZBR[0,0]=izbr0
+BROB_N[0,2]=brob2 BROB_N[0,1]=brob1 BROB_N[0,0]=brob0
+ZADR[0,5]=zadr12 ZADR[0,3]=zadr11 ZADR[0,1]=zadr10
+ZADR[0,4]=zadr22 ZADR[0,2]=zadr21 ZADR[0,0]=zadr20
+PRIM[0,2]=PRIMICANJE2 PRIM[0,1]=PRIMICANJE1 PRIM[0,0]=PRIMICANJE0
+KOMENTAR[0]=koment
+
+osca[0,2]=oscila2 osca[0,1]=oscila1 osca[0,0]=oscila0
+
+M17
+

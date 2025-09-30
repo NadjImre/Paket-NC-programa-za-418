@@ -1,0 +1,29 @@
+PROC _THREAD_PROFIL(INT _Thty,Int _ThPr, Real _ThD0, Real _ThD1, Real _ThD2, Real _ThPi, int _ThHa, int _ThSt, Real _ThKo, Real _ThA1, Real _ThA2, Real _ThR, Real _ThR1, Real _ThR2, Real _ThH1, String[32] _ThNa, String[32] _ThNKont, Real _ThSx, Real _ThSz)
+
+ThTy = _ThTy
+ThPr = _ThPr
+ThD0 = _ThD0
+ThD1 = _ThD1
+ThD2 = _ThD2
+ThPi = _ThPi
+ThHa = _ThHa
+ThSt = _ThSt
+ThKo = _ThKo
+ThA1 = _ThA1
+ThA2 = _ThA2
+ThR = _ThR
+ThR1 = _ThR1
+ThR2 = _ThR2
+ThH1 = _ThH1
+ThNa = _ThNa
+ThNKont = _ThNKont
+ThSx = _ThSx
+ThSz = _ThSz
+
+
+
+STOPRE
+
+STOPRE
+
+M17

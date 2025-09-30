@@ -1,0 +1,12 @@
+PROC _THREAD_RELIEF(String[32] _retab, int _retip, real _redub ,int _rezub, real _repro,real _rekor)
+
+retab = _retab
+retip = _retip
+redub = _redub
+rezub = _rezub
+repro = _repro
+rekor = _rekor
+stopre
+
+
+M17

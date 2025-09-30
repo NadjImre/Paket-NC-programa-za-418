@@ -1,0 +1,23 @@
+PROC _KOREKCIJA_KAMENA(STRING[32] BRTOC,INT DBROJTOC,STRING[32] BrAbriht,Int DbrojAbriht,Real VAR3)
+
+Def Real StariPrec
+Def Real NoviPrec
+Def Real Korekcija
+Def Real OfsetAbriht
+Def Int BrKam,BrDia
+
+BrKam = Gett(BrToc)
+BrDia = Gett(BrAbriht)
+
+StariPrec = $TC_DP3[BrKam,DbrojToc]
+NoviPrec = var3
+OfsetAbriht = $TC_DP3[BRDia,DbrojAbriht]
+Korekcija = StariPrec-NoviPrec
+
+$TC_DP3[BrKam,DBrojToc]=NoviPrec
+$TC_DP3[BrDia,DBrojAbriht] = OfsetAbriht+Korekcija
+
+STOPRE
+
+M17
+

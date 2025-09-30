@@ -1,0 +1,249 @@
+
+;OPSTI PARAMTERI ZA BRUSENJE - ZA STANDARDNE CIKLUSE
+
+DEF CHAN INT NACBRUS[200]      ;Nacin rada - brusenje, poravnavanje, merenje itd.
+DEF CHAN INT PARBRUS[200]      
+DEF CHAN INT BRUS[90]         ;nacin brusenja
+DEF CHAN INT BRUSSMER[90]
+DEF CHAN REAL PREC[90,3]      ;precnik brusenja
+DEF CHAN REAL POZZ[90,2]      ;pozicija brušenja
+DEF CHAN REAL BROB[90,4]        ;broj obrtaja komada
+DEF CHAN REAL DODB[90,4]      ;dodatak za brusenje
+DEF CHAN REAL BRZU[90,4]      ;brzina spanovanja kod usecanja
+DEF CHAN REAL KORAK[90,4]     ; spanovanje kod oscilacija
+DEF CHAN REAL KORX[90]        ;korekcija za osu X
+DEF CHAN REAL KORZ[90]        ;i za osu Z
+DEF CHAN REAL KORC[90]        ; i za C osu
+DEF CHAN REAL KORU[90]        ; i za U osu
+DEF CHAN REAL KORB[90]        ; i za B osu
+DEF CHAN REAL BRZO[90,4]      ;brzina oscilovanja 
+DEF CHAN REAL IZBR[90,4]      ;Izbrusavanje  
+DEF CHAN REAL ZADR[90,6]      ;Zadrzavanje u krajnjim tackama oscilacija
+DEF CHAN REAL OSCA[90,4]        ;duzina oscilovanja
+DEF CHAN INT PRIM[90,4]         ;nacin primicanja
+DEF CHAN INT PRIMugao[90,4]     ;primicanje kod profilnog
+DEF CHAN INT BRUSON[90,4]     ; nacin brusenja 0 - iskljuceno
+DEF CHAN INT TOCILO[90]       ; broj tocila koje se koristi
+DEF CHAN STRING[32] NazivToc[90]=REP("Krug1")
+DEF CHAN STRING[32] NazivKonture[90]
+DEF CHAN INT BrojIviceToc[90] = REP(1)
+DEF CHAN INT ABRIHT[90,4]     ; abrihtovanje pre brusenja 0 nema 1 ima
+DEF CHAN INT MER_BRUS[90]     ;broj merenja koje se koristi kod brusenja
+DEF CHAN INT ODSKOK_BRUS[90]  ; nacin zavrsetka ciklusa
+DEF CHAN INT ODSKOK_SKROZ[90] ; nacin zavrsetka ciklusa
+def chan int prilaz_brus[90]
+DEF CHAN INT GLAVA[90]        ; da li se koristi merna glava
+DEF CHAN INT UNUTRA[90]       ; da li je unutrašnje brušenje (<>0)
+DEF CHAN REAL POZU[90]	      ; pozicija ose U kod brušenja - ako je ima
+DEF CHAN REAL POZC[90]	      ; poèetna pozicija ose C kod brušenja - ako je ima
+DEF CHAN REAL POZB[90]        ; poèetna pozicija B ose kod brušenja
+DEF CHAN INT SA_U_OSOM[90]  ; DA LI SE KORISTI U OSA
+DEF CHAN STRING[32] KOMENTAR[90] ;komentar uz program programa
+DEF CHAN STRING[32] KOMENTAR_A[90] ;komentar uz program programa
+DEF CHAN INT MER_BRUS_Z[90]
+DEF CHAN INT MER_STOP_KAM[49]
+def chan int kocnica[90] ; 0-bez kocnice 1-normalna kocnica 2-pojacana
+def chan real korprof[90]=rep(100)
+DEF CHAN STRING[32] TABPROF[90] ;komentar uz program programa
+DEF CHAN STRING[32] PROGPROF[90] ;komentar uz program programa
+
+DEF CHAN REAL KOR_ABRIHT[90,4]  ;Unosi se vrednost skidanja materijala posle koje se abrihtuje 
+DEF CHAN REAL BROB_N[90,4]     ; POVRATAK POSLE BRUSENJA
+DEF CHAN STRING[32] NAZIV_ABRIHT[9,4] ;NAZIVI PROGRAMA ZA ABRIHTOVANJE
+DEF CHAN STRING[32] PROG_PRILAZ[9] ; NAZIVI PROGRAMA ZA PRILAZ
+;OPSTI PARAMETRI
+DEF CHAN INT SCHETCHIK       ;broj radnog komada
+DEF CHAN REAL PREKIDX	    ;X-kordinata prekida 
+DEF CHAN REAL PREKIDZ        ;Z-kordinata prekida
+DEF CHAN REAL PREKIDZA       ;Z-korinata prekida kod abrihtovanja
+DEF CHAN REAL PREKIDXA	   ;X-kordinata prekida KOD ABRIHT.
+DEF CHAN BOOL PREKIDU        ;DA LI JE PREKID UNUTRA ILI SPOLJA
+DEF CHAN INT TEST            ;sa vodom ili bez
+DEF CHAN REAL BEZPOZ[9]         ;Bezbedna pozicija po Z osi   
+DEF CHAN REAL BEZPREC[9]        ;Bezbedni precnik     
+DEF CHAN INT FORMIROVKA=0 
+DEF CHAN INT PARKIRANJE=0
+DEF CHAN REAL PARKPREC=0
+DEF CHAN REAL PARKPOZ=0
+DEF CHAN REAL PARKUOSE=0
+DEF CHAN REAL BEZBEDNIX,BEZBEDNIZ
+def chan int zadnjikamen
+
+;PARAMETRI TOCILA
+DEF CHAN STRING[32] NazivToc_A[90]=REP("Krug1")
+DEF CHAN INT BrojIviceToc_A[90]=REP(1)
+DEF CHAN REAL PRECKAM[9]=(75,75,75,75,75,75,75,75,75)       ;precnik tocila
+DEF CHAN REAL SIRKAM[9]=(10,10,10,10,10,10,10,10,10)     ;sirina tocila
+DEF CHAN REAL DUZNAS[9]=(25,25,25,25,25,25,25,25,25);Duzina nastavkA
+DEF CHAN REAL MINPREC[9]     ;minimalni precnik
+DEF CHAN REAL MINSIRINA[9]   ;minimalna sirina
+DEF CHAN REAL BRZKAM[90]=REP(10)      ;obinma brzina tocila
+DEF CHAN REAL BRZKAM_A[90]=REP(10)   ; obimna brzina kod abrihtovanja
+DEF CHAN REAL MAKSBROB[90]=REP(1000)
+DEF CHAN REAL RABHOD=300     ;radna brzina
+DEF CHAN REAL PODHODX[90]=REP(5)       ;velicina prilaza
+DEF CHAN REAL PODHODZ[90]=REP(5)  ;dimenzija povratka posle abrihtovanja
+DEF CHAN INT KORDSYS[90]=REP(2);Kordinatni sistem u kojem se brusi
+DEF CHAN INT OBLIKAM[90]=REP(0); oblik kamena 0-spoljno brušenje
+DEF CHAN INT OBLIKAM_A[90]=REP(0)
+DEF CHAN INT HLADJENJE[90]=REP(12);broj M-funkcije za hladjenje
+DEF CHAN REAL UGAOTOC[9]     ; ugao tocila prilikom abrihtovanja
+DEF CHAN INT VRETENO[9]=(0,1,2,3,0,1,2,3,0) ; broj vretena na kojem je tocilo
+DEF CHAN INT HLADJENJE_A[90]=REP(12) ; broj M funkcije koja se koristi za hlaðenje kod abrihtovanja
+DEF CHAN INT DIAMANT[9]=(3,7,9,11,13,15,17,19,21);Kordinatni sistemi dijamanata
+DEF CHAN INT NACIN_A[90]     ;nacin abrihtovanja 
+DEF CHAN INT SMER_A[90]=REP(0);smer abrihtovanja 0 - iz desna u levo
+DEF CHAN INT SMER_AX[90]=REP(0)      ;smer abrihtovanja 0 - IZ PLUSA U MINUS
+DEF CHAN REAL DUBBOKA[90]    ;dubina kamena levo
+DEF CHAN REAL SIRBOKA[9]     ;sirina upustenog dela
+DEF CHAN REAL FASETA[90]     ;velicina fazete levo
+DEF CHAN REAL RADIUS[90]     ;radijus prelaza levo
+DEF CHAN REAL DUBBOKA2[90]    ;dubina kamena desno
+DEF CHAN REAL SIRBOKA2[9]     ;sirina upustenog dela
+DEF CHAN REAL FASETA2[90]     ;velicina fazete desno
+DEF CHAN REAL RADIUS2[90]     ;radijus prelaza desno
+DEF CHAN REAL RADIUS1[90]     ;radijus prelaza
+DEF CHAN REAL UGAOBOKA[90]   ;ugao boka levo
+DEF CHAN REAL UGAOBOKA2[90]   ;ugao boka desno
+DEF CHAN REAL KOR_KAM_X[90]   ;Korekcija konusa po precniku
+DEF CHAN REAL KOR_KAM_Z[90]   ;Korekcija konusa po celu
+DEF CHAN REAL KOR_KAM_X2[90]   ;Korekcija konusa po precniku
+DEF CHAN REAL KOR_KAM_Z2[90]   ;Korekcija konusa po celu
+DEF CHAN REAL KOR_KAM_DUZ_X[90]
+DEF CHAN REAL KOR_KAM_DUZ_Z[90]
+DEF CHAN REAL DUZKON[90]     ;Duzina konusnog dela kamena levo
+DEF CHAN REAL UGAOKON[90]    ;Ugao konusnog dela kamena levo
+DEF CHAN REAL DUZKON2[90]     ;Duzina konusnog dela kamena desno
+DEF CHAN REAL UGAOKON2[90]    ;Ugao konusnog dela kamena desno
+DEF CHAN REAL CEN_X[90]      ;Polozaj centra kruga po X osi
+DEF CHAN REAL CEN_Z[90]      ;Polozaj centra kruga po Z osi
+DEF CHAN INT RADUDUB[90]     ;za <>0 ispuceni radijus
+DEF CHAN REAL RAST[90]       ;duzina kamena
+DEF CHAN REAL ALFA[90]       ;ugao leve strane navoja
+DEF CHAN REAL BETA[90]       ;ugao desne strane navoja 
+DEF CHAN REAL KORAKBREGA[90] ;korak navoja na tocilu
+DEF CHAN INT BROJBREGOVA[90] ;korak navoja na tocilu
+DEF CHAN REAL DIAM_RADIJUS[90] ;radijus dijamanta
+DEF CHAN REAL VISKAM[90]       ;visina do upusta
+DEF CHAN REAL PASHATKA[90]     ;sirina ravnog dela
+DEF CHAN INT ROLNA[90]=REP(0) ; sa cime se abrihtuje 0 - dijamnat 1 - rolna
+DEF CHAN REAL SIRROL[90]=REP(0) ;sirina rolne
+def chan real radrol[9,2] ;radijus rolne
+DEF CHAN REAL ZLJEB_POZ[9,4]
+DEF CHAN REAL ZLJEB_SIR[9,4]
+DEF CHAN REAL ZLJEB_VIS[9,4]
+DEF CHAN REAL ZLJEB_RAD1[9,4]
+DEF CHAN REAL ZLJEB_RAD2[9,4]
+DEF CHAN INT ZLJEB_OFF[9,4]
+DEF CHAN INT PADAJUCI[90]=REP(0)
+
+;PARAMETRI ABRIHTOVANJA
+DEF CHAN STRING[32] NazivABriht[90]=REP("Krug1")
+DEF CHAN INT BrojIviceAbriht[90]=Rep(1)
+DEF CHAN INT TOCILO_A[90]    ; redni broj tocila koje se abrihtuje
+DEF CHAN INT BROJPROL[90]    ;broj prolaza poravnavanja
+DEF CHAN REAL BRZA[90]       ;brzina poravnavanja
+DEF CHAN REAL KORAKX[90]     ;dubina sloja poravnavanja po precniku
+DEF CHAN REAL KORAKZ[90]     ;spanovanje po boku
+DEF CHAN INT KOMADA[90]      ;broj komada posle kojeg sledi poravnavanje
+DEF CHAN INT PREOSTALO[90]   ;preostali broj komada do abrihtovanja 
+DEF CHAN REAL KOR_KAM_UGAO
+def chan int kocnica_a[90] ; 0-bez kocnice 1-normalna kocnica 2-pojacana
+def chan int prilaz_a[90]=rep(1);nacin prilaza do abrihtera 0-z pa x
+def chan int odskok_a[90]=rep(1);nacin odlaska od abrihtera 0-po x, 1 po z
+
+;PARAMERI ZA SPECIJALNE CIKLUSE BRUSENJA
+DEF CHAN REAL KORAK_N[90]     ; korak navoja
+DEF CHAN REAL SMER_N[90]      ; desni-levi navoj
+DEF CHAN INT  BROJPOC[90]     ; broj pocetaka navoja
+DEF CHAN REAL KONUS[90]       ; konus navoja
+DEF CHAN INT NACBRUS_N[90]    ; spoljni/unutrašnji navoj
+DEF CHAN INT PROFIL_N[90]     ; tip profila 1-trouglast 2-trapezast .....
+DEF CHAN STRING[32] NAZIV_N[90] ;naziv navoja
+
+DEF CHAN INT UGAO_ULAZA_N[90]=REP(180) ;KOD BRUSENJE NAVOJA USECANJEM
+DEF CHAN INT UGAO_BRUSENJA_N[90]=REP(540) ;KOD BRUSENJE NAVOJA USECANJEM
+DEF CHAN INT UGAO_IZLAZA_N[90]=REP(60) ;KOD BRUSENJE NAVOJA USECANJEM
+DEF CHAN INT UGAO_PRITUP1[90]=REP(180)
+DEF CHAN INT UGAO_PRITUP2[90]=REP(180)
+DEF CHAN INT UGAO_PRITUP0[90]=REP(30)
+DEF CHAN REAL DUZINA_N[90]
+DEF CHAN REAL PREC1[90]       ; precnik jezgra navoja
+DEF CHAN REAL PREC2[90]       ; precnik jezgra navoja
+DEF CHAN REAL EKSCENT[90]     ; ekscentar komada
+DEF CHAN REAL DUZ_KON_N[90]    ;DUZINA KONUSNOG DELA
+DEF CHAN REAL RADIJUS_N[90,2]    ;RADIJUS PRELAZA
+def chan real kbrz[90]         ;brzina prelaza kod konusa
+def chan real kstep1[90]       ;najveci korak kod precnika
+def chan real kstep2[90]       ;najveci korak kod konusa
+;PARAMETRI MERENJA
+
+DEF CHAN REAL MER_DUZ[98]      ;duzina merenja
+DEF CHAN REAL MER_UGAO[98]     ;ugao merenja
+DEF CHAN INT  MER_KORD[98]     ;broj kordinatnog sistema
+DEF CHAN REAL MER_POZ[98]      ;pozicija za merenje
+DEF CHAN REAL MER_PREC[98]     ;precnik merenja
+DEF CHAN REAL MER_ORIJ[98]
+DEF CHAN REAL MER_UGAO_B[98]
+DEF CHAN REAL MER_BRZ[98]      ;brzina merenja
+DEF CHAN REAL MER_SONDA[98]    ;broj merne sonde
+DEF CHAN REAL MER_X[98]        ;izmereni precnik
+DEF CHAN REAL MER_Z[98]        ;izmerena pozicija 
+DEF CHAN REAL MER_C[98]        ;izmerena orjentacija 
+DEF CHAN INT MER_BROJ         ;broj merenja koji se obavlja
+DEF CHAN INT MER_KORD_SYS=5   ;kordinatni sistem merenja G57 default 
+DEF CHAN INT MER_MESTO[49]     ;mesto kde se obavlja merenje 0 - spolja, 1 - unutra
+DEF CHAN INT MER_NACIN[49]    ;Nacin merenja
+DEF CHAN INT MER_TACKE[9,2]  ;Tacke merenja
+DEF CHAN REAL MER_GRES_X[49]     ;Greska X
+DEF CHAN REAL MER_GRES_Z[49]     ;Greska Z
+DEF CHAN REAL MER_GRES_W[49]     ;Greska sirine
+DEF CHAN REAL MER_SIRINA[49]  ;ciljna duzina
+DEF CHAN REAL NOM_X[49]       ;NOMINALNI PRECNIK
+DEF CHAN REAL NOM_Z[49]       ;NOMINALNA duzina
+DEF CHAN REAL MER_W[49]       ;Izmerena duzina
+DEF CHAN REAL MER_KUG        ;Radijus kuglice
+DEF CHAN REAL MER_KALIB_X[49]    ;Kalibracija X
+DEF CHAN REAL MER_KALIB_Z[49]    ;KaIBRACija Z
+DEF CHAN REAL MER_GRES_KALIB_X[49]     ;Greska X
+DEF CHAN REAL MER_GRES_KALIB_Z[49]     ;Greska Z
+def chan real mer_doz_gres_x[49]
+def chan real mer_doz_gres_z[49]
+def chan real mer_doz_gres_w[49]
+def chan real mer_doz_kalib_x[49]
+def chan real mer_doz_kalib_z[49]
+DEF CHAN REAL GRESKA_GLAVE[5]
+DEF CHAN REAL IMPULS_GLAVE[5]
+DEF CHAN REAL NOMINALNO_GLAVA[5]
+DEF CHAN REAL RAZLIKA
+;parametri ciklusa
+
+DEF CHAN STRING[32] NAIMENOV[5]=("Ciklus_1","Ciklus_2","Ciklus_3","Ciklus_4", "Poravnavanje") ;naziv programa
+DEF CHAN INT BROJ_CIK      ;Broj akTiVNooG ciKLUSa
+DEF CHAN INT STARTPARAM[5] ;
+DEF CHAN INT BRUS_BROJ[5]=(1,31,61,91,121)     ;Broj brusenja
+DEF CHAN INT lli 0 uli 4 KAMEN
+DEF CHAN INT aktKAM
+DEF CHAN INT OPERACIJA_BROJ
+
+;Aktivne vrednosti i drugi parameri odskoka za merenje
+def chan int AktivniBroj
+def chan int AktivniKamen
+def chan int AktivnaOstrica
+def chan int AktivniKoordSis
+DEF CHAN STRING[32] AktivniAlat
+DEF chan real AktivnoUnutrasnje
+def chan int AktivnaStranaCeonog
+def chan int AktivnaStranaUnutrasnjeg
+def chan int AktivnaStranaOscil
+def chan real umerenja=670
+def chan real xmerenja=0
+def chan real ReturnDist
+def chan real DiamCorr
+def chan real PosCorr
+
+M17
+
+
+
+

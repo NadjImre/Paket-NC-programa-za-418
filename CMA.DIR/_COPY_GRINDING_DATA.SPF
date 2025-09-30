@@ -1,0 +1,38 @@
+PROC _COPY_GRINDING_DATA(INT DST,INT SRC)
+
+BRZO[DST,2]=BRZO[SRC,2] BRZO[DST,1]=BRZO[SRC,1] BRZO[DST,0]=BRZO[SRC,0]
+IZBR[DST,2]=IZBR[SRC,2] IZBR[DST,1]=IZBR[SRC,1] IZBR[DST,0]=IZBR[SRC,0]
+BROB_N[DST,2]=BROB_N[SRC,2] BROB_N[DST,1]=BROB_N[SRC,1] BROB_N[DST,0]=BROB_N[SRC,0]
+ZADR[DST,5]=zadr[SRC,5] ZADR[DST,3]=zadr[SRC,3] ZADR[DST,1]=zadr[SRC,1]
+ZADR[DST,4]=zadr[SRC,4] ZADR[DST,2]=zadr[SRC,2] ZADR[DST,0]=zadr[SRC,0]
+PRIM[DST,2]=PRIM[SRC,2] PRIM[DST,1]=PRIM[SRC,1] PRIM[DST,0]=PRIM[SRC,0]
+KOMENTAR[DST]=komentar[SRC]
+odskok_skroz[DST]=odskok_skroz[SRC] odskok_brus[DST]=odskok_brus[SRC]
+prilaz_brus[DST]=prilaz_brus[SRC]
+osca[DST,2]=osca[SRC,2] osca[DST,1]=osca[SRC,1] osca[DST,0]=osca[SRC,0]
+dodb[DST,3]=dodb[SRC,3] dodb[DST,2]=dodb[SRC,2] dodb[DST,1]=dodb[SRC,1] dodb[DST,0]=dodb[SRC,0]
+brzu[DST,3]=brzu[SRC,3] brzu[DST,2]=brzu[SRC,2] brzu[DST,1]=brzu[SRC,1] brzu[DST,0]=brzu[SRC,0]
+brob[DST,3]=brob[SRC,3] brob[DST,2]=brob[SRC,2] brob[DST,1]=brob[SRC,1] brob[DST,0]=brob[SRC,0]
+korak[DST,2]=korak[SRC,2] korak[DST,1]=korak[SRC,1] korak[DST,0]=korak[SRC,0]
+nazivtoc[DST]=nazivtoc[SRC]
+brojivicetoc[DST]=brojivicetoc[SRC]
+BRUS[DST]=BRUS[SRC]
+brussmer[DST]=brussmer[SRC]
+prec[DST,0]=prec[SRC,0]
+prec[DST,1]=prec[SRC,1]
+pozz[DST,0]=pozz[SRC,0]
+pozz[DST,1]=pozz[SRC,1]
+mer_brus[DST]=mer_brus[SRC]
+mer_brus_z[DST]=mer_brus_z[SRC]
+korx[DST]=korx[SRC]
+korz[DST]=korz[SRC]
+bezprec[DST]=bezprec[SRC]
+bezpoz[DST]=bezpoz[SRC]
+kordsys[DST]=kordsys[SRC]
+oblikam[DST]=oblikam[SRC]
+brzkam[DST]=brzkam[SRC]
+hladjenje[DST]=hladjenje[SRC]
+STOPRE
+
+M17
+

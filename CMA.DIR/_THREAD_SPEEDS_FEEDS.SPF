@@ -1,0 +1,14 @@
+PROC _THREAD_SPEEDS_FEEDS(Real DOD3 ,Real DOD2 ,Real DOD1 ,Real DOD0 ,Real BRZU3 ,Real KORAK2 ,Real KORAK1 ,Real KORAK0, Real BRZO2 ,Real BRZO1 ,Real BRZO0 ,Real IZBR2 ,Real IZBR1 ,Real IZBR0 ,Real BROB2 ,Real BROB1 ,Real BROB0 , String[32] koment )
+
+BRZO[0,2]=brzo2 BRZO[0,1]=brzo1 BRZO[0,0]=brzo0
+IZBR[0,2]=izbr2 IZBR[0,1]=izbr1 IZBR[0,0]=izbr0
+BROB_N[0,2]=brob2 BROB_N[0,1]=brob1 BROB_N[0,0]=brob0
+KOMENTAR[0]=koment
+
+dodb[0,3]=dod3 dodb[0,2]=dod2 dodb[0,1]=dod1 dodb[0,0]=dod0
+brzu[0,3]=brzu3 
+korak[0,2]=korak2 korak[0,1]=korak1 korak[0,0]=korak0
+
+
+
+M17
