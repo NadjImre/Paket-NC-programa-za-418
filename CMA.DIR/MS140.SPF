@@ -1,7 +1,7 @@
 proc ms140(string[32] alat,int ivica,real prec_mer,real poz_mer,real duz_mer,real brz_mer,int msonde,int broj_sonde, int korekcija,int kord_system,real doz_greska,int poz_c,real c_mer)
-
+def real start_x,start_z
 g18g500 t=alat d=ivica
-
+start_x=$aa_iw[x] start_z=$aa_iw[z]
 stopre
 msg("$66020")
 m=msonde
@@ -24,7 +24,9 @@ IF($AC_MEA[broj_sonde]==0) GOTOF GRESKA
 RAZLIKA=prec_mer-$aa_mw[X]
 msg("$66021 "<<$aa_mw[X]<<" $66022 "<<RAZLIKa)
 g1 x=prec_mer+duz_mer F=brz_mer
-msonde=msonde+1
+g0 x=start_x
+g0 z=start_z
+msonde=msonde-1
 G75X0
 m=msonde
 
