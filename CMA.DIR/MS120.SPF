@@ -46,6 +46,7 @@ g0 x=start_x
 g0 z=start_z
 ;podizanje sonde
 msonde=msonde-1
+G75X0
 m=msonde
 
 ;ako je razlika veća od dozvoljene prijavi grešku

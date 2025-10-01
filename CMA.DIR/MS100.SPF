@@ -11,7 +11,7 @@ g500
 xpos=$aa_iw[x]
 G1 X=xpos-duz_mer MEAS=broj_sonde F=brz_mer
 IF($AC_MEA[broj_sonde]==0) GOTOF GRESKA
-$tc_dp4[brsonde,ivica]=$AA_MM[x]-nom_prec
+$tc_dp4[brsonde,ivica]=$AA_MM[x]-nom_prec/2
 g1 x=xpos
 m17
 
